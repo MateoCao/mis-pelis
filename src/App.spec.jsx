@@ -7,6 +7,10 @@ describe('App', () => {
   it('should render component', () => {
     const component = render(<App />);
 
-    expect(component).toBeDefined();
+    const title = component.getByText('ESTO NO ESTÁ');
+
+    expect(title).toBe('asdsa');
+
+    // expect(component).toBeDefined();
   });
 });
