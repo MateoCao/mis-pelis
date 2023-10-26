@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App () {
   return (
     <>
-      <h1>REACT</h1>
-      <h2>ESTO FUNCIONA</h2>
+      <h1>PAGINA EN CONSTRUCCIÓN</h1>
       <Router>
         <Routes>
           <Route path='/login' element={<LoginPage />} />
