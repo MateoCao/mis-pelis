@@ -6,7 +6,7 @@ function App () {
   return (
     <>
       <h1>REACT</h1>
-      <h2>TESTING</h2>
+      <h2>DEV</h2>
       <Router>
         <Routes>
           <Route path='/login' element={<LoginPage />} />
