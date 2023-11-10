@@ -1,9 +1,8 @@
-import InputField from '../components/InputField.jsx';
-import formFieldsData from '../assets/data/loginForm.json';
+import InputField from '../../../components/InputField.jsx';
+import formFieldsData from '../../../assets/data/registerForm.json';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 
-function LoginPage () {
+function RegisterView () {
   const {
     register,
     handleSubmit,
@@ -15,6 +14,7 @@ function LoginPage () {
     console.log(data);
 
     reset();
+    return data;
   };
 
   return (
@@ -22,8 +22,8 @@ function LoginPage () {
       <div className='h-44 '>
         <h1 className='text-red-700 text-5xl p-4 font-bold'>NETFLIX</h1>
       </div>
-      <section className='flex flex-col justify-center bg-black p-8 rounded self-center w-fit mx-auto'>
-        <form className='flex flex-col justify-center gap-4 w-[310px] h-[360px]' onSubmit={handleSubmit(userRegister)}>
+      <section className='flex justify-center bg-black p-8 rounded self-center w-fit mx-auto'>
+        <form className='flex flex-col justify-center gap-4 w-[370px] h-[450px]' onSubmit={handleSubmit(userRegister)}>
           {formFieldsData.map(field => (
             <InputField
               key={field.name}
@@ -37,19 +37,11 @@ function LoginPage () {
             />
           ))}
 
-          <input className='bg-red-700 hover:bg-red-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200' type='submit' value='Ingresar' />
+          <input className='bg-red-700 hover:bg-red-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200' type='submit' value='Registrarme' />
         </form>
-        <div className='text-gray-200 text-lg'>
-          <p>
-            ¿No tienes cuenta?
-          </p>
-          <Link to='/register'>
-            ¡Registrate aquí!
-          </Link>
-        </div>
       </section>
     </main>
   );
 }
 
-export default LoginPage;
+export default RegisterView;
