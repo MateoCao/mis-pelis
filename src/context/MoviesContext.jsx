@@ -3,7 +3,10 @@ import { createContext, useContext, useState } from 'react';
 export const MoviesContext = createContext();
 
 export const MoviesProvider = ({ children }) => {
-  const [popularMovies, setPopularMovies] = useState();
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [popularSeries, setPopularSeries] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [newReleases, setNewReleases] = useState([]);
   const getMovies = async (url) => {
     const res = await fetch(url, {
       method: 'GET',
@@ -13,8 +16,7 @@ export const MoviesProvider = ({ children }) => {
       }
     });
     const fetchedMovies = await res.json();
-    console.log(fetchedMovies.results);
-    setPopularMovies(fetchedMovies.results);
+    console.log(popularSeries);
     return fetchedMovies.results;
   };
   return (
@@ -22,7 +24,13 @@ export const MoviesProvider = ({ children }) => {
       value={{
         getMovies,
         popularMovies,
-        setPopularMovies
+        setPopularMovies,
+        popularSeries,
+        setPopularSeries,
+        upcomingMovies,
+        setUpcomingMovies,
+        newReleases,
+        setNewReleases
       }}
     >{children}
     </MoviesContext.Provider>
