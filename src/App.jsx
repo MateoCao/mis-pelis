@@ -10,6 +10,7 @@ function App () {
         <Navbar />
         <RouterProvider router={appRouter} />
       </MoviesProvider>
+
     </>
   );
 }

@@ -8,11 +8,13 @@ import '../index.css';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
+import { useNavigate } from 'react-router-dom';
 
 function CarrouselMovies ({ carrouselData }) {
   const [activeStates, setActiveStates] = useState({});
   const swiperElRef = useRef(null);
   const { title, movies } = carrouselData;
+  const navigate = useNavigate();
   const handleMouseOver = (movieId) => {
     setActiveStates((prevStates) => ({ ...prevStates, [movieId]: true }));
   };
@@ -36,7 +38,7 @@ function CarrouselMovies ({ carrouselData }) {
 
         {movies.map((movie) => {
           return (
-            <SwiperSlide onMouseOver={() => handleMouseOver(movie.id)} onMouseLeave={() => handleMouseLeave(movie.id)} className='rounded cursor-pointer' key={movie.id}>
+            <SwiperSlide onClick={() => navigate(`/movie/${movie.id}`)} onMouseOver={() => handleMouseOver(movie.id)} onMouseLeave={() => handleMouseLeave(movie.id)} className='rounded cursor-pointer' key={movie.id}>
               <div
                 style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
                 className='flex bg-no-repeat bg-cover rounded bg-black h-60'
