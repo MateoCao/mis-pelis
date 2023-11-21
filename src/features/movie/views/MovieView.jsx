@@ -20,7 +20,6 @@ function MovieView () {
         setIsLoading(true);
         const selectedMovie = await getMovie(movieId);
         setMovie(selectedMovie);
-        console.log(selectedMovie);
       } catch (error) {
         console.log('ERROR AL CARGAR LA PELICULA', error);
       } finally {
@@ -33,7 +32,7 @@ function MovieView () {
   return (
     <main>
       <MovieHero movieUrl={movie.backdrop_path} />
-      <section className='flex justify-center gap-10 mt-5 text-gray-200'>
+      <section className='flex justify-center gap-10 mt-5 text-gray-200 h-[50vh]'>
         <TrailerPlayer id={movieId} />
         <MovieInfo info={{ title: movie.title, overview: movie.overview, genres: movie.genres }} />
       </section>

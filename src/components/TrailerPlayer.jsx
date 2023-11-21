@@ -19,10 +19,11 @@ function TrailerPlayer ({ id }) {
         }
       });
       const movieVideo = await res.json();
+      console.log(movieVideo);
       const { results } = movieVideo;
+      console.log(results);
       results.map((result) => {
-        console.log(result);
-        if (result.site === 'YouTube' & result.name === 'Official Trailer') {
+        if (result.site === 'YouTube' & result.name.includes('Trailer')) {
           setMovieInfo({
             id: result.key
           });
@@ -35,8 +36,10 @@ function TrailerPlayer ({ id }) {
     fetchVideo();
   }, []);
   return (
-    <div>
-      <YouTube videoId={movieVideoInfo.id} opts={opts} />
+    <div className='w-[853px] flex items-center justify-center'>
+      {!movieVideoInfo.id
+        ? <h2 className='text-3xl text-gray-300'>TRAILER NO DISPONIBLE</h2>
+        : <YouTube videoId={movieVideoInfo.id} opts={opts} />}
     </div>
   );
 }

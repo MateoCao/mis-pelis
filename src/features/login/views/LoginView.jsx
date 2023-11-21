@@ -2,6 +2,7 @@ import InputField from '../../../components/InputField.jsx';
 import formFieldsData from '../../../assets/data/loginForm.json';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AUTH_API } from '../../auth/util/authApi.js';
 
 function LoginView () {
   const {
@@ -13,7 +14,7 @@ function LoginView () {
 
   const userRegister = async (data) => {
     console.log(data);
-
+    await AUTH_API.loginRequest(data);
     reset();
   };
 

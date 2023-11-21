@@ -11,6 +11,7 @@ function HomeView () {
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
+        // PASAR STRING COMO PARAMETRO PARA useReducer
         const fetchedPopularMovies = await getMovies('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1');
         setPopularMovies(fetchedPopularMovies);
         const fetchedPopularSeries = await getMovies('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1');

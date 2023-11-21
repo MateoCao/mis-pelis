@@ -1,6 +1,8 @@
 import InputField from '../../../components/InputField.jsx';
 import formFieldsData from '../../../assets/data/registerForm.json';
 import { useForm } from 'react-hook-form';
+import { AUTH_API } from '../../auth/util/authApi.js';
+import { useAuth } from '../../auth/hook/useAuth.jsx';
 
 function RegisterView () {
   const {
@@ -10,9 +12,13 @@ function RegisterView () {
     formState: { errors }
   } = useForm();
 
+  const { isAuthenticated } = useAuth();
+  console.log(isAuthenticated);
+
   const userRegister = async (data) => {
     console.log(data);
-
+    const res = await AUTH_API.registerRequest(data);
+    console.log(res);
     reset();
     return data;
   };
