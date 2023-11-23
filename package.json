@@ -23,7 +23,8 @@
     "react-hook-form": "^7.47.0",
     "react-router-dom": "^6.17.0",
     "react-youtube": "^10.1.0",
-    "swiper": "^11.0.4"
+    "swiper": "^11.0.4",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",

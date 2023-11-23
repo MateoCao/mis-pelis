@@ -1,5 +1,9 @@
+import { useMoviesContext } from '../context/MoviesContext';
+
 function MovieInfo ({ info }) {
+  const { myList, setMyList } = useMoviesContext();
   const { title, overview, genres } = info;
+  console.log(myList);
   return (
     <div className='w-1/2'>
       <div className='flex gap-3 text-gray-400 text-lg'>
@@ -13,7 +17,7 @@ function MovieInfo ({ info }) {
         <h2 className='text-4xl'>{title}</h2>
         <p className='text-lg'>{overview}</p>
       </div>
-
+      <button onClick={() => setMyList([...myList, info])}>Add to my list</button>
     </div>
   );
 }

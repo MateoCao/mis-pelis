@@ -1,43 +1,37 @@
-import { useEffect, useState } from 'react';
-import { useMoviesContext } from '../../../context/MoviesContext';
 import { Hero } from '../../../components/Hero';
 import Loading from '../../../components/Loading.jsx';
 import CarrouselMovies from '../../../components/CarrouselMovies';
+import useSWR from 'swr';
+import { getPopularMovies, getUpcomingMovies, getTopRatedMovies } from '../services/movies.services.js';
 
 function HomeView () {
-  const [isLoading, setIsLoading] = useState(true);
-  const { getMovies, setPopularMovies, setPopularSeries, setUpcomingMovies, setNewReleases, popularSeries, upcomingMovies, newReleases } = useMoviesContext();
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setIsLoading(true);
-        // PASAR STRING COMO PARAMETRO PARA useReducer
-        const fetchedPopularMovies = await getMovies('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1');
-        setPopularMovies(fetchedPopularMovies);
-        const fetchedPopularSeries = await getMovies('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1');
-        setPopularSeries(fetchedPopularSeries);
-        const fetchedUpcomingMovies = await getMovies('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1');
-        setUpcomingMovies(fetchedUpcomingMovies);
-        const fetchedNewReleases = await getMovies('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1');
-        setNewReleases(fetchedNewReleases);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchMovies();
-  }, []);
-  if (isLoading) return <Loading />;
+  const {
+    data: popularMovies,
+    error: popularMoviesError,
+    isLoading: popularMoviesIsLoading
+  } = useSWR('getPopularMovies', getPopularMovies);
+  const {
+    data: topRatedMovies,
+    error: topRatedMoviesError,
+    isLoading: topRatedMoviesIsLoading
+  } = useSWR('getTopRatedMovies', getTopRatedMovies);
+  const {
+    data: upcomingMovies,
+    error: upcomingMoviesError,
+    isLoading: upcomingMoviesIsLoading
+  } = useSWR('getUpcomingMovies', getUpcomingMovies);
+
+  if (popularMoviesIsLoading || topRatedMoviesIsLoading || upcomingMoviesIsLoading) return <Loading />;
+
   return (
-    <>
-      <Hero />
-      <section className='flex flex-col gap-5 justify-around mt-10 ml-3'>
-        <CarrouselMovies carrouselData={{ title: 'Popular series', movies: popularSeries }} />
-        <CarrouselMovies carrouselData={{ title: 'Upcoming movies', movies: upcomingMovies }} />
-        <CarrouselMovies carrouselData={{ title: 'New releases', movies: newReleases }} />
+    <main>
+      <Hero movies={popularMovies} popularMoviesLoading={popularMoviesIsLoading} />
+      <section className='flex flex-col gap-5 justify-around mt-10 ml-3 p-2'>
+        <CarrouselMovies carrouselData={{ title: 'Popular series', movies: popularMovies, error: popularMoviesError }} />
+        <CarrouselMovies carrouselData={{ title: 'Upcoming movies', movies: topRatedMovies, error: topRatedMoviesError }} />
+        <CarrouselMovies carrouselData={{ title: 'New releases', movies: upcomingMovies, error: upcomingMoviesError }} />
       </section>
-    </>
+    </main>
   );
 }
 

@@ -1,23 +1,12 @@
 import { createContext, useContext, useState } from 'react';
-
+import { getPopularMovies } from '../features/home/services/movies.services';
 export const MoviesContext = createContext();
 
 export const MoviesProvider = ({ children }) => {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [popularSeries, setPopularSeries] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
-  const [newReleases, setNewReleases] = useState([]);
   const [myList, setMyList] = useState([]);
-  const getMovies = async (url) => {
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2QwYzEzMzNmZDQ5ODNmZTc4ODQwNzQyZjc5MjQ1MiIsInN1YiI6IjY1MzdiYzYyOTQ2MzE4MDBjNmI1YzI0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ey1XMgkvfgAEE17LI2nGdtr34zIARRlap9nK85BT7NA'
-      }
-    });
-    const fetchedMovies = await res.json();
-    return fetchedMovies.results;
+  const getMovies = async () => {
+    const fetchedMovies = await getPopularMovies();
+    return fetchedMovies;
   };
 
   const getMovie = async (id) => {
@@ -52,14 +41,6 @@ export const MoviesProvider = ({ children }) => {
       value={{
         getMovie,
         getMovies,
-        popularMovies,
-        setPopularMovies,
-        popularSeries,
-        setPopularSeries,
-        upcomingMovies,
-        setUpcomingMovies,
-        newReleases,
-        setNewReleases,
         searchMovie,
         myList,
         setMyList

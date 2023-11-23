@@ -14,7 +14,7 @@ import MovieBackdrop from './MovieBackdrop';
 function CarrouselMovies ({ carrouselData }) {
   const [activeStates, setActiveStates] = useState({});
   const swiperElRef = useRef(null);
-  const { title, movies } = carrouselData;
+  const { title, movies, error } = carrouselData;
   const navigate = useNavigate();
   const handleMouseOver = (movieId) => {
     setActiveStates((prevStates) => ({ ...prevStates, [movieId]: true }));
@@ -23,7 +23,7 @@ function CarrouselMovies ({ carrouselData }) {
   const handleMouseLeave = (movieId) => {
     setActiveStates((prevStates) => ({ ...prevStates, [movieId]: false }));
   };
-  if (!movies) return <>Loading...</>;
+  if (error) return <>Ha ocurrido un error al cargar las peliculas</>;
   return (
     <div className='mt-10'>
       <h3 className='text-white text-4xl mb-6'>{title}</h3>
@@ -41,7 +41,7 @@ function CarrouselMovies ({ carrouselData }) {
           return (
             <SwiperSlide onMouseOver={() => handleMouseOver(movie.id)} onMouseLeave={() => handleMouseLeave(movie.id)} className='rounded cursor-pointer' key={movie.id}>
               <div
-                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
+                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop})` }}
                 className='flex bg-no-repeat bg-cover rounded bg-black h-60'
               >
                 {activeStates[movie.id] &&
