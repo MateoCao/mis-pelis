@@ -2,7 +2,6 @@ import { tmdbPaths } from '../../../../core/datasource/remote/tmbd/tmdbApi';
 
 export const tmdbMoviesTvAdapter = (response) => {
   const { results } = response;
-  console.log(results);
 
   return results.map((item) => ({
     id: item.id,

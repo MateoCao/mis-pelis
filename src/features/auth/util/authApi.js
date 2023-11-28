@@ -1,9 +1,7 @@
-import Cookies from 'js-cookie';
-
 export const AUTH_API = {
   url: import.meta.env.VITE_APP_ENVIROMENT === 'prod'
-    ? 'https://precious-red-walrus.cyclic.app'
-    : 'http://localhost:1235',
+    ? 'https://precious-red-walrus.cyclic.app/user'
+    : 'http://localhost:1235/user',
 
   // Registro
 
@@ -35,9 +33,6 @@ export const AUTH_API = {
         credentials: 'include',
         body: JSON.stringify(user)
       });
-      console.log(response);
-      const cookies = Cookies.get();
-      console.log('API', cookies);
 
       return response;
     } catch (error) {
