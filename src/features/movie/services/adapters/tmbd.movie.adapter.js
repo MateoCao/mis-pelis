@@ -1,4 +1,4 @@
-import { tmdbPaths } from '../../../../../core/datasource/remote/tmbd/tmdbApi';
+import { tmdbPaths } from '../../../../core/datasource/remote/tmbd/tmdbApi';
 
 export const tmdbMovieTvAdapter = (item) => {
   return {

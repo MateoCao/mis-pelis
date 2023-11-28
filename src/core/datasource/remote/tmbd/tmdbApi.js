@@ -1,10 +1,41 @@
 import axios from 'axios';
+import { misPelisApi, misPelisPaths } from '../mis-pelis/misPelisApi';
 
-export const tmdbApi = axios.create({
+export const tmdbApiMovies = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   params: {
     api_key: import.meta.env.VITE_APP_TMBD_API_KEY,
     language: 'es-ES'
+  }
+});
+
+export const tmdbApiMovie = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+  params: {
+    api_key: import.meta.env.VITE_APP_TMBD_API_KEY,
+    language: 'es-ES'
+  }
+});
+
+tmdbApiMovies.interceptors.response.use(async (response) => {
+  const { results } = response.data;
+  if (results) {
+    const { data } = await misPelisApi.get(misPelisPaths.movies.favouritesGet);
+    if (data) {
+      results.map((movie) => {
+        const favouriteMovie = data.find((favouriteMovie) => movie.id === favouriteMovie.id);
+        if (favouriteMovie) {
+          movie.mongoId = favouriteMovie._id;
+          movie.favourite = true;
+        } else {
+          movie.favourite = false;
+        }
+        return movie;
+      });
+      return { data: { ...response.data } };
+    }
+  } else {
+    console.log('ERROR TMDB');
   }
 });
 

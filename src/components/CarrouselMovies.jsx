@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../index.css';
 
-// import required modules
 import { Navigation } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
 import MovieBackdrop from './MovieBackdrop';
@@ -47,7 +45,7 @@ function CarrouselMovies ({ carrouselData }) {
                 {activeStates[movie.id] &&
                   <div onClick={() => navigate(`/movie/${movie.id}`)} className='absolute w-full h-5/6  bg-black/50' />}
 
-                {activeStates[movie.id] && <MovieBackdrop title={movie?.title} originalName={movie?.original_name} id={movie.id} genre={movie.genre} overview={movie.overview} />}
+                {activeStates[movie.id] && <MovieBackdrop title={movie.title} id={movie.id} mongoId={movie.mongoId} genre={movie.genre} overview={movie.overview} backdrop={movie.backdrop} isFavourite={movie.favourite} />}
               </div>
             </SwiperSlide>
           );

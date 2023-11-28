@@ -5,6 +5,7 @@ register();
 
 export const Hero = ({ movies, popularMoviesLoading }) => {
   const swiperElRef = useRef(null);
+  console.log(movies);
 
   if (popularMoviesLoading) return <>Loading...</>;
 
@@ -19,7 +20,7 @@ export const Hero = ({ movies, popularMoviesLoading }) => {
       delay='3000'
       effect='fade'
     >
-      {movies.map((movie) => {
+      {movies?.map((movie) => {
         return (
           <swiper-slide key={movie.id}>
             <div className='absolute w-full h-screen bg-gradient-to-r from-black/25 to-black/0' />

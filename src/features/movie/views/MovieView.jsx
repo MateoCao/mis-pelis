@@ -3,7 +3,7 @@ import MovieHero from '../../../components/MovieHero';
 import TrailerPlayer from '../../../components/TrailerPlayer';
 import MovieInfo from '../../../components/MovieInfo';
 import Loading from '../../../components/Loading';
-import { getMovie } from './services/movie.services';
+import { getMovie } from '../services/movie.services';
 import useSWR from 'swr';
 
 function MovieView () {

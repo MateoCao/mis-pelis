@@ -1,5 +1,5 @@
 import YouTube from 'react-youtube';
-import { getTrailer } from '../features/movie/views/services/movie.services';
+import { getTrailer } from '../features/movie/services/movie.services';
 import useSWR from 'swr';
 
 function TrailerPlayer ({ id }) {
@@ -16,9 +16,9 @@ function TrailerPlayer ({ id }) {
   if (trailerIsLoading) return <h2>Cargando...</h2>;
   return (
     <div className='w-[853px] flex items-center justify-center'>
-      {trailerError
+      {trailerError || trailerId.length === 0
         ? <h2 className='text-3xl text-gray-300'>TRAILER NO DISPONIBLE</h2>
-        : <YouTube videoId={trailerId} opts={opts} />}
+        : <YouTube videoId={trailerId[0]} opts={opts} />}
     </div>
   );
 }

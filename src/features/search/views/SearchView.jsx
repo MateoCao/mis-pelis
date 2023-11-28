@@ -19,7 +19,7 @@ function SearchView () {
         value={inputValue}
         onChange={(e) => handleChange(e)}
       />
-      <ul className='grid grid-cols-7 gap-5 w-4/5'>
+      <ul className='grid grid-cols-searchedMovies gap-5 w-4/5'>
         {movies.map((movie) => (
           <MoviePoster
             key={movie.id}

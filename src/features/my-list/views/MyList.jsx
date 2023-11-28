@@ -1,16 +1,21 @@
-import { useMoviesContext } from '../../../context/MoviesContext';
+import { getFavouritesMovies } from '../services/movies.services';
+import useSWR from 'swr';
+import MovieCard from '../../../components/MovieCard';
 
 function MyList () {
-  const { myList } = useMoviesContext();
-  console.log(myList);
+  const {
+    data: myList,
+    error: myListError,
+    isLoading: myListIsLoading
+  } = useSWR('getFavouritesMovies', getFavouritesMovies);
+  if (myListIsLoading) return <p>Cargando...</p>;
   return (
-    <main>
+    <main className='mt-16'>
       <h2>Mi lista</h2>
-      <section>
-        {myList.map((movie) => (
-          <div key={movie.id}>
-            <h3>{movie.title}</h3>
-          </div>
+      <section className='grid grid-cols-myListMovies gap-5'>
+        {myList.map((movie, i) => (
+          <MovieCard key={i} id={movie.id} backdrop={movie.backdrop} title={movie.title} overview={movie.overview} />
+
         ))}
       </section>
     </main>

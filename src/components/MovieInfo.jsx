@@ -3,7 +3,6 @@ import { useMoviesContext } from '../context/MoviesContext';
 function MovieInfo ({ info }) {
   const { myList, setMyList } = useMoviesContext();
   const { title, overview, genres } = info;
-  console.log(myList);
   return (
     <div className='w-1/2'>
       <div className='flex gap-3 text-gray-400 text-lg'>
