@@ -5,7 +5,12 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      gridTemplateColumns: {
+        myListMovies: 'repeat(auto-fit, minmax(350px, 1fr));',
+        searchedMovies: 'repeat(auto-fit, minmax(200px, 1fr));'
+      }
+    }
   },
   plugins: []
 };

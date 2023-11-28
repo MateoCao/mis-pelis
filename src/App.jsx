@@ -1,17 +1,16 @@
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import { appRouter } from './core/rutes/app_router';
+import { MoviesProvider } from './context/MoviesContext';
+import { AuthProvider } from './features/auth/provider/authProvider.jsx';
 
 function App () {
   return (
     <>
-      <h1>PAGINA EN CONSTRUCCIÓN</h1>
-      <Router>
-        <Routes>
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <MoviesProvider>
+          <RouterProvider router={appRouter} />
+        </MoviesProvider>
+      </AuthProvider>
     </>
   );
 }

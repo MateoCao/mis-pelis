@@ -1,8 +1,9 @@
-import InputField from '../components/InputField.jsx';
-import formFieldsData from '../assets/data/registerForm.json';
+import InputField from '../../../components/InputField.jsx';
+import formFieldsData from '../../../core/assets/data/registerForm.json';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../auth/hook/useAuth.jsx';
 
-function RegisterPage () {
+function RegisterView () {
   const {
     register,
     handleSubmit,
@@ -10,17 +11,18 @@ function RegisterPage () {
     formState: { errors }
   } = useForm();
 
+  const { signUp } = useAuth();
+
   const userRegister = async (data) => {
     console.log(data);
-
+    const res = await signUp(data);
+    console.log(res);
     reset();
+    return data;
   };
 
   return (
-    <main className=' bg-[#242424] w-screen h-screen'>
-      <div className='h-44 '>
-        <h1 className='text-red-700 text-5xl p-4 font-bold'>NETFLIX</h1>
-      </div>
+    <main className='flex items-center bg-[#242424] w-full h-[calc(100vh-64px)]'>
       <section className='flex justify-center bg-black p-8 rounded self-center w-fit mx-auto'>
         <form className='flex flex-col justify-center gap-4 w-[370px] h-[450px]' onSubmit={handleSubmit(userRegister)}>
           {formFieldsData.map(field => (
@@ -43,4 +45,4 @@ function RegisterPage () {
   );
 }
 
-export default RegisterPage;
+export default RegisterView;
