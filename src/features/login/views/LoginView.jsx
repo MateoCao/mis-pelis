@@ -20,7 +20,6 @@ function LoginView () {
     const res = await signIn(data);
     if (res.status === 201) {
       navigate('/my-list');
-      console.log('ASD');
     } else {
       console.log('Error al logear usuario');
     }
