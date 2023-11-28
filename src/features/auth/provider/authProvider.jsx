@@ -33,9 +33,6 @@ export const AuthProvider = ({ children, fallback }) => {
       const res = await AUTH_API.loginRequest(user);
       const data = await res.json();
 
-      const cookies = Cookies.get();
-
-      Cookies.set('token', cookies.token);
       if (res.ok) {
         setUser(data);
         setIsAuthenticated(true);
