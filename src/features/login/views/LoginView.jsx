@@ -1,8 +1,8 @@
 import InputField from '../../../components/InputField.jsx';
-import formFieldsData from '../../../assets/data/loginForm.json';
+import formFieldsData from '../../../core/assets/data/loginForm.json';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { AUTH_API } from '../../auth/util/authApi.js';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/hook/useAuth.jsx';
 
 function LoginView () {
   const {
@@ -12,17 +12,23 @@ function LoginView () {
     formState: { errors }
   } = useForm();
 
+  const { signIn } = useAuth();
+
+  const navigate = useNavigate();
+
   const userRegister = async (data) => {
-    console.log(data);
-    await AUTH_API.loginRequest(data);
+    const res = await signIn(data);
+    if (res.status === 201) {
+      navigate('/my-list');
+      console.log('ASD');
+    } else {
+      console.log('Error al logear usuario');
+    }
     reset();
   };
 
   return (
-    <main className=' bg-[#242424] w-screen h-screen'>
-      <div className='h-44 '>
-        <h1 className='text-red-700 text-5xl p-4 font-bold'>NETFLIX</h1>
-      </div>
+    <main className='flex items-center bg-[#242424] w-full h-[calc(100vh-64px)]'>
       <section className='flex flex-col justify-center bg-black p-8 rounded self-center w-fit mx-auto'>
         <form className='flex flex-col justify-center gap-4 w-[310px] h-[360px]' onSubmit={handleSubmit(userRegister)}>
           {formFieldsData.map(field => (

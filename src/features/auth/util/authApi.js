@@ -59,5 +59,20 @@ export const AUTH_API = {
     } catch (error) {
       console.error('Error al verificar el token');
     }
+  },
+
+  async logout () {
+    try {
+      const response = await fetch(`${this.url}/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      });
+      return response;
+    } catch (error) {
+      console.error('Error al cerrar sesión', error);
+    }
   }
 };

@@ -15,7 +15,6 @@ export const AuthProvider = ({ children, fallback }) => {
     try {
       const res = await AUTH_API.registerRequest(user);
       const data = await res.json();
-      console.log(data);
       if (res.ok) {
         setUser(data);
         setIsAuthenticated(true);
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children, fallback }) => {
       const data = await res.json();
 
       const cookies = Cookies.get();
-      console.log(cookies);
 
       Cookies.set('token', cookies.token);
       if (res.ok) {
@@ -49,16 +47,21 @@ export const AuthProvider = ({ children, fallback }) => {
     }
   };
 
-  const logout = async () => {
-    Cookies.remove('token');
-    setIsAuthenticated(false);
-    setUser(null);
+  const signOut = async () => {
+    try {
+      const res = await AUTH_API.logout();
+      if (res.ok) {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.log('ERROR AL DESLOGUEAR USUARIO', error);
+    }
   };
 
   useEffect(() => {
     const checkLogin = async () => {
       const token = Cookies.get('token');
-      console.log('token con get:', token);
 
       if (!token) {
         setIsAuthenticated(false);
@@ -97,7 +100,7 @@ export const AuthProvider = ({ children, fallback }) => {
     <AuthContext.Provider value={{
       signUp,
       signIn,
-      logout,
+      signOut,
       user,
       isAuthenticated,
       errors,

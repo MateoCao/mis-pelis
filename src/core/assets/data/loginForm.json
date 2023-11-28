@@ -1,0 +1,16 @@
+[
+    {
+      "label": "Correo electrónico",
+      "id": "email",
+      "type": "email",
+      "autoComplete": "email",
+      "name": "email"
+    },
+    {
+      "label": "Contraseña",
+      "id": "password",
+      "type": "password",
+      "autoComplete": "new-password",
+      "name": "password"
+    }
+  ]
