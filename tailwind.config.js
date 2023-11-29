@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        myListMovies: 'repeat(auto-fit, minmax(350px, 500px));',
-        searchedMovies: 'repeat(auto-fit, minmax(200px, 1fr));'
+        myListMovies: 'repeat(auto-fit, minmax(250px, 350px));',
+        searchedMovies: 'repeat(auto-fit, minmax(150px, 200px));'
       }
     }
   },
