@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 export const misPelisApi = axios.create({
-  baseURL: import.meta.env.VITE_APP_ENVIROMENT === 'prod'
-    ? 'https://precious-red-walrus.cyclic.app'
-    : 'http://localhost:1235',
+  baseURL: import.meta.env.VITE_APP_AUTH_URL || 'http://localhost:1235',
   withCredentials: true
 });
 

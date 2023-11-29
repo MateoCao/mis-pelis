@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 export const authApi = axios.create({
-  baseURL: import.meta.env.VITE_APP_ENVIROMENT === 'prod'
-    ? 'https://precious-red-walrus.cyclic.app/user'
-    : 'http://localhost:1235/user',
+  baseURL: import.meta.env.VITE_APP_AUTH_URL || 'http://localhost:1235/user',
   withCredentials: true
 });
 
