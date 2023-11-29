@@ -10,11 +10,15 @@ function InputField ({ label, id, type, register, name, autoComplete, errors }) 
         id={id}
         type={type}
         autoComplete={autoComplete}
+        required
         {...register(name)}
       />
-      {errors[name]?.message && (
-        <p className='text-sm text-red-600'>{errors[name].message}</p>
-      )}
+      <div className='min-h-[35px]'>
+        {errors[name]?.message && (
+          <p className='text-red-600 text-sm font-semibold'>{errors[name].message}</p>
+        )}
+      </div>
+
     </>
   );
 }

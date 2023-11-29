@@ -1,5 +1,5 @@
 export const AUTH_API = {
-  url: import.meta.env.VITE_APP_ENVIROMENT === 'prod'
+  url: import.meta.env.VITE_APP_ENVIROMENT === 'dev'
     ? 'https://precious-red-walrus.cyclic.app/user'
     : 'http://localhost:1235/user',
 
@@ -33,6 +33,7 @@ export const AUTH_API = {
         credentials: 'include',
         body: JSON.stringify(user)
       });
+      console.log(response);
 
       return response;
     } catch (error) {
