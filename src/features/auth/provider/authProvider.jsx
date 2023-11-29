@@ -18,8 +18,10 @@ export const AuthProvider = ({ children, fallback }) => {
       if (res.ok) {
         setUser(data);
         setIsAuthenticated(true);
+        return data;
       } else {
         setErrors(data);
+        return data;
       }
     } catch (error) {
       console.log(error);
@@ -34,10 +36,14 @@ export const AuthProvider = ({ children, fallback }) => {
       const data = await res.json();
 
       if (res.ok) {
+        const cookies = Cookies.get();
+        Cookies.set('token', cookies.token);
         setUser(data);
         setIsAuthenticated(true);
+        return data;
       } else {
         setErrors(data);
+        return data;
       }
     } catch (error) {
       console.log(error);
