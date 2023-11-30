@@ -2,6 +2,8 @@ import { useMoviesContext } from '../../features/my-list/context/MoviesContext';
 import { useNavigate } from 'react-router-dom';
 import { addToFavorites, deleteFromFavourites } from '../../features/movie/services/movie.services';
 import { useState } from 'react';
+import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function MovieBackdrop ({ id, mongoId, title, overview, backdrop, isFavourite }) {
   const { setMyList, myList } = useMoviesContext();
@@ -13,7 +15,6 @@ function MovieBackdrop ({ id, mongoId, title, overview, backdrop, isFavourite })
       await deleteFromFavourites(mongoId);
 
       const selectedMovie = myList.find((movie) => movie.id === id);
-      console.log(selectedMovie);
       const index = myList.indexOf(selectedMovie);
       if (index !== -1) {
         myList.splice(index, 1);
@@ -44,9 +45,9 @@ function MovieBackdrop ({ id, mongoId, title, overview, backdrop, isFavourite })
       </div>
       <div className='bg-black/50 h-1/6 flex justify-center items-center'>
         <div className='flex justify-end items-center w-4/5'>
-          <div className='bg-[#fff] rounded-full hover:scale-125 duration-100'>
-            <button className='text-2xl w-8 h-8 text-gray-800' onClick={handleList}>
-              {handleFavourite ? '✓' : '+'}
+          <div className={`h-8 w-8 rounded-full hover:scale-125 duration-100 flex items-center justify-center ${handleFavourite ? 'bg-green-600' : 'bg-[#fff]'}`}>
+            <button className={`text-xl ${handleFavourite ? 'text-gray-200' : 'text-gray-600'}`} onClick={handleList}>
+              {handleFavourite ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faPlus} />}
             </button>
           </div>
         </div>

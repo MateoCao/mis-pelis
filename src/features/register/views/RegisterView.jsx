@@ -7,7 +7,7 @@ import { registerSchema } from '../validations/schema/registerSchema.js';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function RegisterView () {
   const {
@@ -50,7 +50,8 @@ function RegisterView () {
   };
 
   return (
-    <main className='flex items-center bg-[#242424] w-full h-[calc(100vh-64px)]'>
+    <main className='flex relative items-center bg-black/30 w-full h-[calc(100vh-64px)]'>
+      <img className='absolute w-full h-full object-cover top-0 left-0 -z-10' src='../../../../banner/banner.jpg' alt='Banner de peliculas' />
       <section className='flex flex-col justify-center bg-black p-8 rounded self-center w-fit mx-auto max-w-[380px]'>
         {error &&
           <div className='w-4/5 self-center text-center'>
@@ -69,10 +70,18 @@ function RegisterView () {
               errors={errors}
             />
           ))}
-          <button type='submit' className='bg-red-700 hover:bg-red-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200'>
+          <button type='submit' className='bg-blue-700 hover:bg-blue-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200'>
             {loading ? <FontAwesomeIcon className='animate-spin' icon={faSpinner} /> : 'Registrarme'}
           </button>
         </form>
+        <div className='text-gray-200 text-lg mt-2'>
+          <p>
+            ¿Tienes una cuenta?
+          </p>
+          <Link className='text-blue-500 hover:text-blue-600' to='/login'>
+            ¡Ingresa aquí!
+          </Link>
+        </div>
       </section>
     </main>
   );

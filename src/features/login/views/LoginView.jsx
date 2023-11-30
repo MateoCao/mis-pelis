@@ -27,7 +27,6 @@ function LoginView () {
     try {
       setLoading(true);
       const res = await signIn(data);
-      console.log(res);
       if (res.status === 201) {
         navigate('/my-list');
       } else {
@@ -48,10 +47,11 @@ function LoginView () {
   };
 
   return (
-    <main className='flex items-center bg-[#242424] w-full h-[calc(100vh-64px)]'>
+    <main className='flex relative items-center bg-black/30 w-full h-[calc(100vh-64px)]'>
+      <img className='absolute w-full h-full object-cover top-0 left-0 -z-10' src='../../../../banner/banner.jpg' alt='Banner de peliculas' />
       <section className='flex flex-col justify-center bg-black p-8 rounded self-center w-fit mx-auto max-w-[380px]  '>
         <div className='w-4/5 self-center text-center'>
-          {error && <p className='text-red-500 text-lg font-semibold'>{error}</p>}
+          {error && <p className='text-blue-500 text-lg font-semibold'>{error}</p>}
         </div>
         <form className='flex flex-col justify-center gap-2 w-[310px] h-[360px]' onSubmit={handleSubmit(userLogin)}>
           {formFieldsData.map(field => (
@@ -67,7 +67,7 @@ function LoginView () {
             />
           ))}
 
-          <button type='submit' className='bg-red-700 hover:bg-red-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200'>
+          <button type='submit' className='bg-blue-700 hover:bg-blue-800 rounded text-white font-semibold text-lg p-2 mt-2 cursor-pointer duration-200'>
             {loading ? <FontAwesomeIcon className='animate-spin' icon={faSpinner} /> : 'Ingresar'}
           </button>
         </form>
@@ -75,7 +75,7 @@ function LoginView () {
           <p>
             ¿No tienes cuenta?
           </p>
-          <Link to='/register'>
+          <Link className='text-blue-500 hover:text-blue-600' to='/register'>
             ¡Registrate aquí!
           </Link>
         </div>

@@ -21,7 +21,11 @@ function HomeView () {
     isLoading: upcomingMoviesIsLoading
   } = useSWR('getUpcomingMovies', getUpcomingMovies);
 
-  if (popularMoviesIsLoading || topRatedMoviesIsLoading || upcomingMoviesIsLoading) return <Loading />;
+  if (popularMoviesIsLoading || topRatedMoviesIsLoading || upcomingMoviesIsLoading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <main>
