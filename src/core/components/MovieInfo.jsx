@@ -1,7 +1,4 @@
-import { useMoviesContext } from '../../features/my-list/context/MoviesContext';
-
 function MovieInfo ({ info }) {
-  const { myList, setMyList } = useMoviesContext();
   const { title, overview, genres } = info;
   return (
     <div className='w-1/2'>
@@ -16,7 +13,6 @@ function MovieInfo ({ info }) {
         <h2 className='text-4xl'>{title}</h2>
         <p className='text-lg'>{overview}</p>
       </div>
-      <button onClick={() => setMyList([...myList, info])}>Add to my list</button>
     </div>
   );
 }
