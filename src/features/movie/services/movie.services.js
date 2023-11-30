@@ -4,7 +4,6 @@ import { misPelisApi, misPelisPaths } from '../../../core/datasource/remote/mis-
 
 export const getMovie = async (id) => {
   const { data } = await tmdbApiMovie.get(`/movie/${id}`);
-  console.log(data);
   return tmdbMovieTvAdapter(data);
 };
 

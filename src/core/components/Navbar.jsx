@@ -44,8 +44,6 @@ function Navbar () {
           <li className='hover:text-gray-300 cursor-pointer'>
             <Link to='/'>Inicio</Link>
           </li>
-          <li className='hover:text-gray-300 cursor-pointer'>Populares</li>
-          <li className='hover:text-gray-300 cursor-pointer'>Novedades</li>
           <li className='hover:text-gray-300 cursor-pointer'>
             <Link to='my-list'>Mi lista</Link>
           </li>
