@@ -30,7 +30,6 @@ export const AuthProvider = ({ children, fallback }) => {
   // Login
 
   const signIn = async (user) => {
-    console.log(import.meta.env.VITE_APP_AUTH_URL);
     try {
       const { status, data } = await userLogin(user);
 
