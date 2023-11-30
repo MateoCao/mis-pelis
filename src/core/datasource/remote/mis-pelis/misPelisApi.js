@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const misPelisApi = axios.create({
   baseURL: 'https://precious-red-walrus.cyclic.app',
-  // baseURL: 'http://localhost:1235',
   withCredentials: true
 });
 
