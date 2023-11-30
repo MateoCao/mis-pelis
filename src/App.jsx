@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import { appRouter } from './core/rutes/app_router';
+import { appRouter } from './core/rutes/appRouter.jsx';
 import { MoviesProvider } from './features/my-list/context/MoviesContext.jsx';
 import { AuthProvider } from './features/auth/provider/authProvider.jsx';
 
