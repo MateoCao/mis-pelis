@@ -50,6 +50,7 @@ export const AuthProvider = ({ children, fallback }) => {
     try {
       const { status } = await userLogout();
       if (status === 200) {
+        Cookies.remove('token');
         setUser(null);
         setIsAuthenticated(false);
       }
@@ -60,14 +61,6 @@ export const AuthProvider = ({ children, fallback }) => {
 
   useEffect(() => {
     const checkLogin = async () => {
-      const token = Cookies.get('token');
-
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return setUser(null);
-      }
-
       try {
         const { status, data } = await verifyToken();
 
