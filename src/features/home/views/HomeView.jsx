@@ -3,6 +3,8 @@ import Loading from '../../../core/components/Loading.jsx';
 import CarrouselMovies from '../../../core/components/CarrouselMovies.jsx';
 import useSWR from 'swr';
 import { getPopularMovies, getUpcomingMovies, getTopRatedMovies } from '../services/movies.services.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function HomeView () {
   const {
@@ -23,7 +25,9 @@ function HomeView () {
 
   if (popularMoviesIsLoading || topRatedMoviesIsLoading || upcomingMoviesIsLoading) {
     return (
-      <Loading />
+      <main className='h-screen w-screen flex items-center justify-center'>
+        <FontAwesomeIcon className='animate-spin text-8xl text-blue-700' icon={faSpinner} />
+      </main>
     );
   }
 
