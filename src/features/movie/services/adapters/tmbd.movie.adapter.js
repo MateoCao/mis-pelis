@@ -11,11 +11,7 @@ export const tmdbMovieTvAdapter = (item) => {
 };
 
 export const tmdbMovieTvTrailerAdapter = (results) => {
-  return results.map((result) => {
-    if (result.site === 'YouTube' & result.name.includes('Trailer')) {
-      return result.key;
-    } else {
-      return null;
-    }
-  });
+  return results
+    .filter((result) => result.site === 'YouTube' && result.name.includes('Tráiler'))
+    .map((result) => result.key || null);
 };
