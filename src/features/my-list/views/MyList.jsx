@@ -1,7 +1,7 @@
 import { getFavouritesMovies } from '../services/movies.services';
 import useSWR from 'swr';
-import MovieCard from '../../../components/MovieCard';
-import Loading from '../../../components/Loading';
+import MovieCard from '../../../core/components/MovieCard.jsx';
+import Loading from '../../../core/components/Loading.jsx';
 
 function MyList () {
   const {

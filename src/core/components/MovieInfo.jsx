@@ -1,4 +1,4 @@
-import { useMoviesContext } from '../context/MoviesContext';
+import { useMoviesContext } from '../../features/my-list/context/MoviesContext';
 
 function MovieInfo ({ info }) {
   const { myList, setMyList } = useMoviesContext();

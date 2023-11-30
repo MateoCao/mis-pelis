@@ -1,5 +1,5 @@
 import MovieBackdrop from './MovieBackdrop';
-import useHover from '../core/hooks/useHover';
+import useHover from '../hooks/useHover';
 import { useNavigate } from 'react-router-dom';
 
 function MovieCard ({ id, backdrop, title, overview, activeStates }) {
