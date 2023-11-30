@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AuthContext } from '../context/authContext';
 import { register as userRegister, login as userLogin, logout as userLogout, verifyToken } from '../services/auth.services.js';
-
+import Cookies from 'js-cookie';
 export const AuthProvider = ({ children, fallback }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -64,7 +64,6 @@ export const AuthProvider = ({ children, fallback }) => {
         const { status, data } = await verifyToken();
 
         if (status !== 200) {
-          console.log('asd');
           setIsAuthenticated(false);
           setLoading(false);
           return;
