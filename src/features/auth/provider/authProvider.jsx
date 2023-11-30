@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { AuthContext } from '../context/authContext';
 import { register as userRegister, login as userLogin, logout as userLogout, verifyToken } from '../services/auth.services.js';
 
@@ -60,18 +59,11 @@ export const AuthProvider = ({ children, fallback }) => {
 
   useEffect(() => {
     const checkLogin = async () => {
-      const token = Cookies.get('token');
-
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return setUser(null);
-      }
-
       try {
         const { status, data } = await verifyToken();
 
         if (status !== 200) {
+          console.log('asd');
           setIsAuthenticated(false);
           setLoading(false);
           return;
