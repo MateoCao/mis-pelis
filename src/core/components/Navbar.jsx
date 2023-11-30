@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 import ProfileModal from './ProfileModal';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../features/auth/hook/useAuth';
+import { useAuth } from '../../features/auth/hook/useAuth';
 
 function Navbar () {
   const [modalActive, setModalActive] = useState(false);

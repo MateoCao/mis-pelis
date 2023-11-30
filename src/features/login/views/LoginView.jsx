@@ -1,4 +1,4 @@
-import InputField from '../../../components/InputField.jsx';
+import InputField from '../../../core/components/InputField.jsx';
 import formFieldsData from '../../../core/assets/data/loginForm.json';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';

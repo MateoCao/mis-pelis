@@ -1,5 +1,5 @@
 import YouTube from 'react-youtube';
-import { getTrailer } from '../features/movie/services/movie.services';
+import { getTrailer } from '../services/movie.services';
 import useSWR from 'swr';
 
 function TrailerPlayer ({ id }) {

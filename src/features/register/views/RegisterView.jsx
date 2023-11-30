@@ -1,4 +1,4 @@
-import InputField from '../../../components/InputField.jsx';
+import InputField from '../../../core/components/InputField.jsx';
 import formFieldsData from '../../../core/assets/data/registerForm.json';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../auth/hook/useAuth.jsx';

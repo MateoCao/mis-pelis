@@ -1,4 +1,4 @@
-import { useAuth } from '../features/auth/hook/useAuth';
+import { useAuth } from '../../features/auth/hook/useAuth';
 
 function ProfileModal () {
   const { signOut } = useAuth();

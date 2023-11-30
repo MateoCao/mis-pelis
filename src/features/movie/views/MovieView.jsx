@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import MovieHero from '../../../components/MovieHero';
-import TrailerPlayer from '../../../components/TrailerPlayer';
-import MovieInfo from '../../../components/MovieInfo';
-import Loading from '../../../components/Loading';
+import MovieHero from '../components/MovieHero';
+import TrailerPlayer from '../components/TrailerPlayer';
+import MovieInfo from '../../../core/components/MovieInfo';
+import Loading from '../../../core/components/Loading.jsx';
 import { getMovie } from '../services/movie.services';
 import useSWR from 'swr';
 

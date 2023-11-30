@@ -17,6 +17,26 @@ export const tmdbApiMovie = axios.create({
   }
 });
 
+export const tmdbApiSearch = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+  params: {
+    api_key: import.meta.env.VITE_APP_TMBD_API_KEY,
+    language: 'es-ES'
+  }
+});
+
+tmdbApiSearch.interceptors.response.use(async (response) => {
+  const { results } = response.data.movies;
+  console.log(results);
+  if (results) {
+    const filteredMovies = results.filter(movie => movie.poster_path !== null);
+    console.log(filteredMovies);
+    return filteredMovies;
+  } else {
+    console.log('ERROR TMDB');
+  }
+});
+
 tmdbApiMovies.interceptors.response.use(async (response) => {
   const { results } = response.data;
   if (results) {
@@ -44,6 +64,7 @@ export const tmdbPaths = {
     popular: '/movie/popular',
     top_rated: '/movie/top_rated',
     upcoming: '/movie/upcoming',
+    search: '/search/movie?query=',
     id: '/movie/'
   },
   tv: {

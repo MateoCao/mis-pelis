@@ -1,6 +1,6 @@
-import { useMoviesContext } from '../context/MoviesContext';
+import { useMoviesContext } from '../../features/my-list/context/MoviesContext';
 import { useNavigate } from 'react-router-dom';
-import { addToFavorites, deleteFromFavourites } from '../features/movie/services/movie.services';
+import { addToFavorites, deleteFromFavourites } from '../../features/movie/services/movie.services';
 import { useState } from 'react';
 
 function MovieBackdrop ({ id, mongoId, title, overview, backdrop, isFavourite }) {

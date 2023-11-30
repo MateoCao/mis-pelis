@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useMoviesContext } from '../../../context/MoviesContext';
-import MoviePoster from '../../../components/MoviePoster';
+import MoviePoster from '../components/MoviePoster';
+import { searchMovie } from '../services/searchMovies.services';
 
 function SearchView () {
   const [inputValue, setInputValue] = useState('');
   const [movies, setMovies] = useState([]);
-  const { searchMovie } = useMoviesContext();
   const handleChange = async (e) => {
     setInputValue(e.target.value);
     const moviesToShow = await searchMovie(inputValue);
