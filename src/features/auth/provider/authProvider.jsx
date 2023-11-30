@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { AUTH_API } from '../../auth/util/authApi.js';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../context/authContext';
+import { register as userRegister, login as userLogin, logout as userLogout, verifyToken } from '../services/auth.services.js';
 
 export const AuthProvider = ({ children, fallback }) => {
   const [user, setUser] = useState(null);
@@ -11,11 +11,10 @@ export const AuthProvider = ({ children, fallback }) => {
 
   // Registro
 
-  const signUp = async (user) => {
+  const signUp = async (newUser) => {
     try {
-      const res = await AUTH_API.registerRequest(user);
-      const data = await res.json();
-      if (res.ok) {
+      const { status, data } = await userRegister(newUser);
+      if (status === 201) {
         setUser(data);
         setIsAuthenticated(true);
         return data;
@@ -32,12 +31,9 @@ export const AuthProvider = ({ children, fallback }) => {
 
   const signIn = async (user) => {
     try {
-      const res = await AUTH_API.loginRequest(user);
-      const data = await res.json();
+      const { status, data } = await userLogin(user);
 
-      if (res.ok) {
-        const cookies = Cookies.get();
-        Cookies.set('token', cookies.token);
+      if (status === 201) {
         setUser(data);
         setIsAuthenticated(true);
         return data;
@@ -52,8 +48,8 @@ export const AuthProvider = ({ children, fallback }) => {
 
   const signOut = async () => {
     try {
-      const res = await AUTH_API.logout();
-      if (res.ok) {
+      const { status } = await userLogout();
+      if (status === 200) {
         setUser(null);
         setIsAuthenticated(false);
       }
@@ -73,11 +69,9 @@ export const AuthProvider = ({ children, fallback }) => {
       }
 
       try {
-        const res = await AUTH_API.verifyTokenRequest();
-        const data = await res.json();
-        console.log(token);
+        const { status, data } = await verifyToken();
 
-        if (!res.ok) {
+        if (status !== 200) {
           setIsAuthenticated(false);
           setLoading(false);
           return;
@@ -86,7 +80,6 @@ export const AuthProvider = ({ children, fallback }) => {
         setIsAuthenticated(true);
         setUser(data);
         setLoading(false);
-        console.log(token);
       } catch (error) {
         setIsAuthenticated(false);
         setUser(null);
