@@ -1,5 +1,4 @@
 import { Hero } from '../components/Hero.jsx';
-import Loading from '../../../core/components/Loading.jsx';
 import CarrouselMovies from '../../../core/components/CarrouselMovies.jsx';
 import useSWR from 'swr';
 import { getPopularMovies, getUpcomingMovies, getTopRatedMovies } from '../services/movies.services.js';
